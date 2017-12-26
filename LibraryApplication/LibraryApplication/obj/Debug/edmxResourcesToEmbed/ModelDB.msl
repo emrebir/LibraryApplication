@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDBStoreContainer" CdmEntityContainer="ModelDBContainer">
+    <EntitySetMapping Name="KitapSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kitap)">
+        <MappingFragment StoreEntitySet="KitapSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KitapAdi" ColumnName="KitapAdi" />
+          <ScalarProperty Name="SayfaSayisi" ColumnName="SayfaSayisi" />
+          <ScalarProperty Name="TasnifNo" ColumnName="TasnifNo" />
+          <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+          <ScalarProperty Name="KiralikDurumu" ColumnName="KiralikDurumu" />
+          <ScalarProperty Name="YazarId" ColumnName="YazarId" />
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="YayinEviId" ColumnName="YayinEviId" />
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+          <ScalarProperty Name="KiralanmaTarihi" ColumnName="KiralanmaTarihi" />
+          <ScalarProperty Name="İadeTarihi" ColumnName="İadeTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YazarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Yazar)">
+        <MappingFragment StoreEntitySet="YazarSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="YazarAdi" ColumnName="YazarAdi" />
+          <ScalarProperty Name="YazarSoyadi" ColumnName="YazarSoyadi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YayinEviSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.YayinEvi)">
+        <MappingFragment StoreEntitySet="YayinEviSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="YayinEviAdi" ColumnName="YayinEviAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KategoriSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kategori)">
+        <MappingFragment StoreEntitySet="KategoriSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullaniciSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kullanici)">
+        <MappingFragment StoreEntitySet="KullaniciSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="CezaDurumu" ColumnName="CezaDurumu" />
+          <ScalarProperty Name="CezaSayisi" ColumnName="CezaSayisi" />
+          <ScalarProperty Name="CezaBitisTarihi" ColumnName="CezaBitisTarihi" />
+          <ScalarProperty Name="TCKimlikNo" ColumnName="TCKimlikNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Admin)">
+        <MappingFragment StoreEntitySet="AdminSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OkunanKitaplar">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.OkunanKitap)">
+        <MappingFragment StoreEntitySet="OkunanKitaplar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AlısTarih" ColumnName="AlısTarih" />
+          <ScalarProperty Name="TeslimTarihi" ColumnName="TeslimTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="KitapYazar" TypeName="ModelDB.KitapYazar" StoreEntitySet="KitapSet">
+      <EndProperty Name="Yazar">
+        <ScalarProperty Name="Id" ColumnName="Yazar_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapKategori" TypeName="ModelDB.KitapKategori" StoreEntitySet="KitapSet">
+      <EndProperty Name="Kategori">
+        <ScalarProperty Name="Id" ColumnName="Kategori_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapYayinEvi" TypeName="ModelDB.KitapYayinEvi" StoreEntitySet="KitapSet">
+      <EndProperty Name="YayinEvi">
+        <ScalarProperty Name="Id" ColumnName="YayinEvi_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapOkunanKitap" TypeName="ModelDB.KitapOkunanKitap" StoreEntitySet="KitapSet">
+      <EndProperty Name="OkunanKitap">
+        <ScalarProperty Name="Id" ColumnName="OkunanKitap_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OkunanKitapKullanici" TypeName="ModelDB.OkunanKitapKullanici" StoreEntitySet="OkunanKitaplar">
+      <EndProperty Name="Kullanici">
+        <ScalarProperty Name="Id" ColumnName="Kullanici_Id" />
+      </EndProperty>
+      <EndProperty Name="OkunanKitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

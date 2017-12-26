@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModelDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelDBStoreContainer">
+    <EntitySet Name="KitapSet" EntityType="ModelDB.Store.KitapSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="YazarSet" EntityType="ModelDB.Store.YazarSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="YayinEviSet" EntityType="ModelDB.Store.YayinEviSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KategoriSet" EntityType="ModelDB.Store.KategoriSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KullaniciSet" EntityType="ModelDB.Store.KullaniciSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdminSet" EntityType="ModelDB.Store.AdminSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OkunanKitaplar" EntityType="ModelDB.Store.OkunanKitaplar" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="KitapYazar" Association="ModelDB.Store.KitapYazar">
+      <End Role="Kitap" EntitySet="KitapSet" />
+      <End Role="Yazar" EntitySet="YazarSet" />
+    </AssociationSet>
+    <AssociationSet Name="KitapKategori" Association="ModelDB.Store.KitapKategori">
+      <End Role="Kitap" EntitySet="KitapSet" />
+      <End Role="Kategori" EntitySet="KategoriSet" />
+    </AssociationSet>
+    <AssociationSet Name="KitapYayinEvi" Association="ModelDB.Store.KitapYayinEvi">
+      <End Role="Kitap" EntitySet="KitapSet" />
+      <End Role="YayinEvi" EntitySet="YayinEviSet" />
+    </AssociationSet>
+    <AssociationSet Name="KitapOkunanKitap" Association="ModelDB.Store.KitapOkunanKitap">
+      <End Role="Kitap" EntitySet="KitapSet" />
+      <End Role="OkunanKitap" EntitySet="OkunanKitaplar" />
+    </AssociationSet>
+    <AssociationSet Name="OkunanKitapKullanici" Association="ModelDB.Store.OkunanKitapKullanici">
+      <End Role="OkunanKitap" EntitySet="OkunanKitaplar" />
+      <End Role="Kullanici" EntitySet="KullaniciSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="KitapSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KitapAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SayfaSayisi" Type="int" Nullable="false" />
+    <Property Name="TasnifNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EklenmeTarihi" Type="datetime" Nullable="false" />
+    <Property Name="KiralikDurumu" Type="bit" Nullable="true" />
+    <Property Name="YazarId" Type="int" Nullable="false" />
+    <Property Name="KategoriId" Type="int" Nullable="false" />
+    <Property Name="YayinEviId" Type="int" Nullable="false" />
+    <Property Name="KullaniciId" Type="int" Nullable="false" />
+    <Property Name="KiralanmaTarihi" Type="datetime" Nullable="true" />
+    <Property Name="İadeTarihi" Type="datetime" Nullable="true" />
+    <Property Name="Yazar_Id" Type="int" Nullable="false" />
+    <Property Name="Kategori_Id" Type="int" Nullable="false" />
+    <Property Name="YayinEvi_Id" Type="int" Nullable="false" />
+    <Property Name="OkunanKitap_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YazarSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YazarAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YazarSoyadi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YayinEviSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="YayinEviAdi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KategoriSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAdi" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KullaniciSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Soyadi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unvan" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DogumTarihi" Type="datetime" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CezaDurumu" Type="bit" Nullable="false" />
+    <Property Name="CezaSayisi" Type="int" Nullable="false" />
+    <Property Name="CezaBitisTarihi" Type="datetime" Nullable="true" />
+    <Property Name="TCKimlikNo" Type="nvarchar" Nullable="false" MaxLength="11" />
+  </EntityType>
+  <EntityType Name="AdminSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Soyadi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Unvan" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DogumTarihi" Type="datetime" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefon" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Adres" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OkunanKitaplar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlısTarih" Type="datetime" Nullable="false" />
+    <Property Name="TeslimTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Kullanici_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="KitapYazar">
+    <End Role="Kitap" Type="ModelDB.Store.KitapSet" Multiplicity="*" />
+    <End Role="Yazar" Type="ModelDB.Store.YazarSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Yazar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="Yazar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KitapKategori">
+    <End Role="Kitap" Type="ModelDB.Store.KitapSet" Multiplicity="*" />
+    <End Role="Kategori" Type="ModelDB.Store.KategoriSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="Kategori_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KitapYayinEvi">
+    <End Role="Kitap" Type="ModelDB.Store.KitapSet" Multiplicity="*" />
+    <End Role="YayinEvi" Type="ModelDB.Store.YayinEviSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="YayinEvi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="YayinEvi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KitapOkunanKitap">
+    <End Role="Kitap" Type="ModelDB.Store.KitapSet" Multiplicity="*" />
+    <End Role="OkunanKitap" Type="ModelDB.Store.OkunanKitaplar" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="OkunanKitap">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Kitap">
+        <PropertyRef Name="OkunanKitap_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OkunanKitapKullanici">
+    <End Role="OkunanKitap" Type="ModelDB.Store.OkunanKitaplar" Multiplicity="*" />
+    <End Role="Kullanici" Type="ModelDB.Store.KullaniciSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OkunanKitap">
+        <PropertyRef Name="Kullanici_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModelDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="KitapSet" EntityType="ModelDB.Kitap" />
+          <EntitySet Name="YazarSet" EntityType="ModelDB.Yazar" />
+          <EntitySet Name="YayinEviSet" EntityType="ModelDB.YayinEvi" />
+          <EntitySet Name="KategoriSet" EntityType="ModelDB.Kategori" />
+          <EntitySet Name="KullaniciSet" EntityType="ModelDB.Kullanici" />
+          <EntitySet Name="AdminSet" EntityType="ModelDB.Admin" />
+          <EntitySet Name="OkunanKitaplar" EntityType="ModelDB.OkunanKitap" />
+          <AssociationSet Name="KitapYazar" Association="ModelDB.KitapYazar">
+            <End Role="Kitap" EntitySet="KitapSet" />
+            <End Role="Yazar" EntitySet="YazarSet" />
+          </AssociationSet>
+          <AssociationSet Name="KitapKategori" Association="ModelDB.KitapKategori">
+            <End Role="Kitap" EntitySet="KitapSet" />
+            <End Role="Kategori" EntitySet="KategoriSet" />
+          </AssociationSet>
+          <AssociationSet Name="KitapYayinEvi" Association="ModelDB.KitapYayinEvi">
+            <End Role="Kitap" EntitySet="KitapSet" />
+            <End Role="YayinEvi" EntitySet="YayinEviSet" />
+          </AssociationSet>
+          <AssociationSet Name="KitapOkunanKitap" Association="ModelDB.KitapOkunanKitap">
+            <End Role="Kitap" EntitySet="KitapSet" />
+            <End Role="OkunanKitap" EntitySet="OkunanKitaplar" />
+          </AssociationSet>
+          <AssociationSet Name="OkunanKitapKullanici" Association="ModelDB.OkunanKitapKullanici">
+            <End Role="OkunanKitap" EntitySet="OkunanKitaplar" />
+            <End Role="Kullanici" EntitySet="KullaniciSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Kitap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KitapAdi" Type="String" Nullable="false" />
+          <Property Name="SayfaSayisi" Type="Int32" Nullable="false" />
+          <Property Name="TasnifNo" Type="String" Nullable="false" />
+          <Property Name="EklenmeTarihi" Type="DateTime" Nullable="false" />
+          <Property Name="KiralikDurumu" Type="Boolean" />
+          <Property Name="YazarId" Type="Int32" Nullable="false" />
+          <Property Name="KategoriId" Type="Int32" Nullable="false" />
+          <Property Name="YayinEviId" Type="Int32" Nullable="false" />
+          <Property Name="KullaniciId" Type="Int32" Nullable="false" />
+          <Property Name="KiralanmaTarihi" Type="DateTime" />
+          <Property Name="İadeTarihi" Type="DateTime" />
+          <NavigationProperty Name="Yazar" Relationship="ModelDB.KitapYazar" FromRole="Kitap" ToRole="Yazar" />
+          <NavigationProperty Name="Kategori" Relationship="ModelDB.KitapKategori" FromRole="Kitap" ToRole="Kategori" />
+          <NavigationProperty Name="YayinEvi" Relationship="ModelDB.KitapYayinEvi" FromRole="Kitap" ToRole="YayinEvi" />
+          <NavigationProperty Name="OkunanKitap" Relationship="ModelDB.KitapOkunanKitap" FromRole="Kitap" ToRole="OkunanKitap" />
+        </EntityType>
+        <EntityType Name="Yazar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YazarAdi" Type="String" Nullable="false" />
+          <Property Name="YazarSoyadi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kitap" Relationship="ModelDB.KitapYazar" FromRole="Yazar" ToRole="Kitap" />
+        </EntityType>
+        <EntityType Name="YayinEvi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YayinEviAdi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kitap" Relationship="ModelDB.KitapYayinEvi" FromRole="YayinEvi" ToRole="Kitap" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategoriAdi" Type="String" Nullable="false" />
+          <NavigationProperty Name="Kitap" Relationship="ModelDB.KitapKategori" FromRole="Kategori" ToRole="Kitap" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" Nullable="false" />
+          <Property Name="Soyadi" Type="String" Nullable="false" />
+          <Property Name="Unvan" Type="String" Nullable="false" />
+          <Property Name="DogumTarihi" Type="DateTime" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" />
+          <Property Name="Sifre" Type="String" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" />
+          <Property Name="Adres" Type="String" Nullable="false" />
+          <Property Name="CezaDurumu" Type="Boolean" Nullable="false" />
+          <Property Name="CezaSayisi" Type="Int32" Nullable="false" />
+          <Property Name="CezaBitisTarihi" Type="DateTime" />
+          <Property Name="TCKimlikNo" Type="String" Nullable="false" MaxLength="11" Unicode="true" />
+          <NavigationProperty Name="OkunanKitap" Relationship="ModelDB.OkunanKitapKullanici" FromRole="Kullanici" ToRole="OkunanKitap" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" Nullable="false" />
+          <Property Name="Soyadi" Type="String" Nullable="false" />
+          <Property Name="Unvan" Type="String" Nullable="false" />
+          <Property Name="DogumTarihi" Type="DateTime" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" />
+          <Property Name="Sifre" Type="String" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" />
+          <Property Name="Mail" Type="String" Nullable="false" />
+          <Property Name="Adres" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OkunanKitap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlısTarih" Type="DateTime" Nullable="false" />
+          <Property Name="TeslimTarihi" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Kitap" Relationship="ModelDB.KitapOkunanKitap" FromRole="OkunanKitap" ToRole="Kitap" />
+          <NavigationProperty Name="Kullanici" Relationship="ModelDB.OkunanKitapKullanici" FromRole="OkunanKitap" ToRole="Kullanici" />
+        </EntityType>
+        <Association Name="KitapYazar">
+          <End Type="ModelDB.Kitap" Role="Kitap" Multiplicity="*" />
+          <End Type="ModelDB.Yazar" Role="Yazar" Multiplicity="1" />
+        </Association>
+        <Association Name="KitapKategori">
+          <End Type="ModelDB.Kitap" Role="Kitap" Multiplicity="*" />
+          <End Type="ModelDB.Kategori" Role="Kategori" Multiplicity="1" />
+        </Association>
+        <Association Name="KitapYayinEvi">
+          <End Type="ModelDB.Kitap" Role="Kitap" Multiplicity="*" />
+          <End Type="ModelDB.YayinEvi" Role="YayinEvi" Multiplicity="1" />
+        </Association>
+        <Association Name="KitapOkunanKitap">
+          <End Type="ModelDB.Kitap" Role="Kitap" Multiplicity="1" />
+          <End Type="ModelDB.OkunanKitap" Role="OkunanKitap" Multiplicity="1" />
+        </Association>
+        <Association Name="OkunanKitapKullanici">
+          <End Type="ModelDB.OkunanKitap" Role="OkunanKitap" Multiplicity="*" />
+          <End Type="ModelDB.Kullanici" Role="Kullanici" Multiplicity="1" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelDBStoreContainer" CdmEntityContainer="ModelDBContainer">
+    <EntitySetMapping Name="KitapSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kitap)">
+        <MappingFragment StoreEntitySet="KitapSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KitapAdi" ColumnName="KitapAdi" />
+          <ScalarProperty Name="SayfaSayisi" ColumnName="SayfaSayisi" />
+          <ScalarProperty Name="TasnifNo" ColumnName="TasnifNo" />
+          <ScalarProperty Name="EklenmeTarihi" ColumnName="EklenmeTarihi" />
+          <ScalarProperty Name="KiralikDurumu" ColumnName="KiralikDurumu" />
+          <ScalarProperty Name="YazarId" ColumnName="YazarId" />
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="YayinEviId" ColumnName="YayinEviId" />
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+          <ScalarProperty Name="KiralanmaTarihi" ColumnName="KiralanmaTarihi" />
+          <ScalarProperty Name="İadeTarihi" ColumnName="İadeTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YazarSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Yazar)">
+        <MappingFragment StoreEntitySet="YazarSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="YazarAdi" ColumnName="YazarAdi" />
+          <ScalarProperty Name="YazarSoyadi" ColumnName="YazarSoyadi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YayinEviSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.YayinEvi)">
+        <MappingFragment StoreEntitySet="YayinEviSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="YayinEviAdi" ColumnName="YayinEviAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KategoriSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kategori)">
+        <MappingFragment StoreEntitySet="KategoriSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="KategoriAdi" ColumnName="KategoriAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KullaniciSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Kullanici)">
+        <MappingFragment StoreEntitySet="KullaniciSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="CezaDurumu" ColumnName="CezaDurumu" />
+          <ScalarProperty Name="CezaSayisi" ColumnName="CezaSayisi" />
+          <ScalarProperty Name="CezaBitisTarihi" ColumnName="CezaBitisTarihi" />
+          <ScalarProperty Name="TCKimlikNo" ColumnName="TCKimlikNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.Admin)">
+        <MappingFragment StoreEntitySet="AdminSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adi" ColumnName="Adi" />
+          <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+          <ScalarProperty Name="Unvan" ColumnName="Unvan" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OkunanKitaplar">
+      <EntityTypeMapping TypeName="IsTypeOf(ModelDB.OkunanKitap)">
+        <MappingFragment StoreEntitySet="OkunanKitaplar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AlısTarih" ColumnName="AlısTarih" />
+          <ScalarProperty Name="TeslimTarihi" ColumnName="TeslimTarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="KitapYazar" TypeName="ModelDB.KitapYazar" StoreEntitySet="KitapSet">
+      <EndProperty Name="Yazar">
+        <ScalarProperty Name="Id" ColumnName="Yazar_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapKategori" TypeName="ModelDB.KitapKategori" StoreEntitySet="KitapSet">
+      <EndProperty Name="Kategori">
+        <ScalarProperty Name="Id" ColumnName="Kategori_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapYayinEvi" TypeName="ModelDB.KitapYayinEvi" StoreEntitySet="KitapSet">
+      <EndProperty Name="YayinEvi">
+        <ScalarProperty Name="Id" ColumnName="YayinEvi_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="KitapOkunanKitap" TypeName="ModelDB.KitapOkunanKitap" StoreEntitySet="KitapSet">
+      <EndProperty Name="OkunanKitap">
+        <ScalarProperty Name="Id" ColumnName="OkunanKitap_Id" />
+      </EndProperty>
+      <EndProperty Name="Kitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="OkunanKitapKullanici" TypeName="ModelDB.OkunanKitapKullanici" StoreEntitySet="OkunanKitaplar">
+      <EndProperty Name="Kullanici">
+        <ScalarProperty Name="Id" ColumnName="Kullanici_Id" />
+      </EndProperty>
+      <EndProperty Name="OkunanKitap">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
